@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Users, Smartphone, Code, Instagram, Youtube } from 'lucide-react'
-import { FaWhatsapp } from 'react-icons/fa'
+import { Users, Code, Instagram, Youtube } from 'lucide-react'
+import { FaTiktok, FaWhatsapp } from 'react-icons/fa'
 import Cards from './components/Cards'
 
 export default function Home() {
@@ -260,7 +260,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="bg-black p-3 rounded-full hover:scale-110 transition-transform duration-300 border border-white"
                 >
-                  <Smartphone className="h-6 w-6 text-white" />
+                  <FaTiktok className="h-6 w-6 text-white" />
                 </a>
                 <a
                   href="https://www.youtube.com/@treina-dev/videos"
