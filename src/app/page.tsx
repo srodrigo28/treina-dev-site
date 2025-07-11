@@ -3,10 +3,10 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Users, Smartphone, Code, Instagram, Youtube } from 'lucide-react'
-import { FaWhatsapp } from "react-icons/fa";
-import Cards from './components/Cards';
+import { FaWhatsapp } from 'react-icons/fa'
+import Cards from './components/Cards'
 
-  export default function Home() {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-800 via-green-600 to-slate-900">
       {/* Header Fixo */}
@@ -14,24 +14,24 @@ import Cards from './components/Cards';
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Code className="h-8 w-8 text-green-500" />
-            <span className="text-xl font-bold text-white">Treina-dev  </span>
+            <span className="text-xl font-bold text-white">Treina-dev</span>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#contato" className="text-blue-400 hover:text-green-500 transition-colors duration-300">Nossos Curos:</a>
+            <a href="#contato" className="text-blue-400 hover:text-green-500 transition-colors duration-300">Nossos Cursos:</a>
             <a href="#contato" className="text-gray-300 hover:text-green-500 transition-colors duration-300">FlutterFlow</a>
             <a href="#sobre" className="text-gray-300 hover:text-green-500 transition-colors duration-300">Java</a>
             <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">ReactJS</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">React-Native</a>
+            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">React Native</a>
             <a href="#contato" className="text-gray-300 hover:text-green-500 transition-colors duration-300">NextJS</a>
           </nav>
           <a
-        href="https://wa.me/5562998579084"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="animate-pulse"
-      >
-          <Button className="bg-green-600 hover:bg-green-700 text-white">Começar Agora</Button>
-      </a>
+            href="https://wa.me/5562998579084"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="animate-pulse"
+          >
+            <Button className="bg-green-600 hover:bg-green-700 text-white">Começar Agora</Button>
+          </a>
         </div>
       </header>
 
@@ -39,54 +39,61 @@ import Cards from './components/Cards';
       <section className="relative min-h-screen overflow-hidden">
         {/* Vídeo de Fundo */}
         <div className="absolute inset-0 w-full h-full">
-          <iframe width="90%" height="80%" className='mx-auto mt-28'
+          <iframe
+            width="90%"
+            height="80%"
+            className="mx-auto mt-28"
             src="https://www.youtube.com/embed/syskoNXbua4?autoplay=1&mute=1&loop=1&playlist=syskoNXbua4&controls=0&showinfo=0&rel=0&iv_load_policy=3"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen>
-          </iframe>
+            allowFullScreen
+          ></iframe>
         </div>
-        
+
         {/* Overlay escuro para melhor legibilidade */}
         <div className="absolute inset-0 bg-black/60"></div>
-        
+
         {/* Conteúdo sobreposto */}
         <div className="relative z-10 min-h-screen flex items-center justify-center">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-5xl md:text-7xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
-              Transforme suas
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from- green-500 to-sky-500 bg-white"> ideias </span>              
+              Transforme suas{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-sky-500">
+                ideias
+              </span>
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-12 max-w-4xl mx-auto drop-shadow-lg">
-              Aprenda a desenvolver aplicativos profissionais do zero ao avançado. 
-              Domine AÍ com uma velocidade incrível.
+              Aprenda a desenvolver aplicativos profissionais do zero ao avançado.
+              Domine IA com uma velocidade incrível.
             </p>
 
-            <p className='text-xl md:text-md bg-sky-500 w-fit px-5 rounded-full lg:text-xl mb-12 max-w-4xl mx-auto subpixel-antialiased animate-pulse text-white'>Agende uma aula teste grátis</p>
+            <p className="text-xl md:text-md bg-sky-500 w-fit px-5 rounded-full lg:text-xl mb-12 mx-auto animate-pulse text-white">
+              Agende uma aula teste grátis
+            </p>
 
             {/* Botão Principal */}
             <div className="space-y-6">
               <a
-        href="https://wa.me/5562998579084"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r cursor-pointer animate-pulse from-green-600 to-orage-600 hover:from-sky-600 hover:to-orange-sky-700 
-                text-white text-md md:text-2xl px-12 py-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 drop-shadow-xl"
+                href="https://wa.me/5562998579084"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Users className="mr-3 h-8 w-4" />
-                Inscreva-se comunidade GRÁTIS
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r cursor-pointer animate-pulse from-green-600 to-orange-600 hover:from-sky-600 hover:to-orange-700 
+                  text-white text-md md:text-2xl px-12 py-8 rounded-full shadow-2xl transform hover:scale-105 transition-all duration-300 drop-shadow-xl"
+                >
+                  <Users className="mr-3 h-8 w-4" />
+                  Inscreva-se na comunidade GRÁTIS
+                </Button>
               </a>
               <p className="text-gray-300 mt-7 text-lg drop-shadow-md">
-                + de 2.000 desenvolvedores só 2025.
+                Mais de 2.000 desenvolvedores só em 2025.
               </p>
             </div>
           </div>
         </div>
-        
+
         {/* Indicador de scroll */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
           <div className="animate-bounce">
@@ -97,6 +104,9 @@ import Cards from './components/Cards';
         </div>
       </section>
 
+      {/* Continuação vem na próxima resposta (cards e footer) */}
+
+      {/* Seção de Cards de Cursos */}
       <Cards />
 
       {/* Cards de Vídeos */}
@@ -108,7 +118,7 @@ import Cards from './components/Cards';
           <p className="text-xl text-gray-300 text-center mb-16 max-w-2xl mx-auto">
             Conteúdo prático e atualizado para você dominar o desenvolvimento de aplicativos
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Card 1 */}
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden shadow-2xl border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105">
@@ -143,8 +153,7 @@ import Cards from './components/Cards';
               <div className="aspect-video bg-black relative">
                 <iframe
                   className="w-full h-full"
-                  src="https://www.youtube.com/embed/5xUbr58icBI?si=M3WERyKCWoHqqWw_
-                  "
+                  src="https://www.youtube.com/embed/5xUbr58icBI?si=M3WERyKCWoHqqWw_"
                   title="FlutterFlow Avançado"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -184,10 +193,10 @@ import Cards from './components/Cards';
                 <h3 className="text-2xl font-bold text-white mb-3">Backend & APIs</h3>
                 <p className="text-gray-300 mb-4">
                   Construa backends robustos para seus apps. Java & Node.js, bancos de dados, 
-                  Apis prontas para sua nova experiência.
+                  APIs prontas para sua nova experiência.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text- green-500 font-semibold text-green-500">30+ horas de conteúdo</span>
+                  <span className="text-green-500 font-semibold">30+ horas de conteúdo</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
@@ -206,10 +215,10 @@ import Cards from './components/Cards';
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl 
         transform hover:scale-110 transition-all duration-300 animate-pulse"
       >
-        <FaWhatsapp  className="h-8 w-8" />
+        <FaWhatsapp className="h-8 w-8" />
       </a>
 
-      {/* Footer */}
+      {/* Rodapé */}
       <footer className="bg-black py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -223,39 +232,39 @@ import Cards from './components/Cards';
                 Aprenda a desenvolver apps e construa sua carreira tech.
               </p>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Links Rápidos</h4>
               <ul className="space-y-2">
-                <li><a href="#cursos" className="text-gray-400 hover:text- green-500 transition-colors">Cursos</a></li>
-                <li><a href="#sobre" className="text-gray-400 hover:text- green-500 transition-colors">Sobre Nós</a></li>
-                <li><a href="#contato" className="text-gray-400 hover:text- green-500 transition-colors">Contato</a></li>
-                <li><a href="#" className="text-gray-400 hover:text- green-500 transition-colors">Política de Privacidade</a></li>
+                <li><a href="#cursos" className="text-gray-400 hover:text-green-500 transition-colors">Cursos</a></li>
+                <li><a href="#sobre" className="text-gray-400 hover:text-green-500 transition-colors">Sobre Nós</a></li>
+                <li><a href="#contato" className="text-gray-400 hover:text-green-500 transition-colors">Contato</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-green-500 transition-colors">Política de Privacidade</a></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Siga-nos</h4>
               <div className="flex space-x-4">
-                <a 
-                  href="https://www.instagram.com/aulastreinadev" 
-                  target="_blank" 
+                <a
+                  href="https://www.instagram.com/aulastreinadev"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-pink-500 to-purple-500 p-3 rounded-full hover:scale-110 transition-transform duration-300"
                 >
                   <Instagram className="h-6 w-6 text-white" />
                 </a>
-                <a 
-                  href="https://tiktok.comhttps://www.tiktok.com/@treinadev?lang=pt_BR" 
-                  target="_blank" 
+                <a
+                  href="https://www.tiktok.com/@treinadev?lang=pt_BR"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-black p-3 rounded-full hover:scale-110 transition-transform duration-300 border border-white"
                 >
                   <Smartphone className="h-6 w-6 text-white" />
                 </a>
-                <a 
-                  href="https://www.youtube.com/@treina-dev/videos" 
-                  target="_blank" 
+                <a
+                  href="https://www.youtube.com/@treina-dev/videos"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-red-600 p-3 rounded-full hover:scale-110 transition-transform duration-300"
                 >
@@ -264,10 +273,10 @@ import Cards from './components/Cards';
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 pt-8 text-center">
             <p className="text-gray-400">
-              © 2025 Treina-dev  . Todos os direitos reservados.
+              © 2025 Treina-dev. Todos os direitos reservados.
             </p>
           </div>
         </div>
