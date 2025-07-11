@@ -74,6 +74,8 @@ function FormationCard({ title, level, tag, image, urlPromocao }: Formation) {
       <div className="relative h-52 w-full overflow-hidden">
         <Image
           src={image}
+          width={800}
+          height={600}
           alt={`Imagem da formação ${title}`}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           loading="lazy"
