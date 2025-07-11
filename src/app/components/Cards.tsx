@@ -69,10 +69,10 @@ function Cards() {
     <main className="mx-auto max-w-7xl px-4 py-16 w-full">
       <section>
         <h2 className="mb-10 text-center text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">
-          Conheça nossas formações em programação
+          Conheça nossas ofertas
         </h2>
 
-        <h3 className="bg-green-500 w-fit mx-auto rounded-full py-3 px-7 animate-pulse mb-10 text-center text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">
+        <h3 className="bg-green-500 w-fit mx-auto  rounded-full py-3 px-7 animate-pulse md:mb-20 text-center text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">
           Super promoção: acesso vitalício.
         </h3>
 
@@ -106,7 +106,7 @@ function FormationCard({ title, level, tag, image, urlPromocao }: Formation) {
       )}
 
       {/* Imagem */}
-      <div className="relative h-44 w-full overflow-hidden">
+      <div className="relative h-52 w-full overflow-hidden">
         <img
           src={image}
           alt={`Imagem da formação ${title}`}

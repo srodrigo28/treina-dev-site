@@ -112,7 +112,7 @@ export default function Home() {
       {/* Cards de Vídeos */}
       <section id="cursos" className="py-20 bg-black/20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-10">
             Nossos Cursos em Destaque
           </h2>
           <p className="text-xl text-gray-300 text-center mb-16 max-w-2xl mx-auto">
@@ -140,7 +140,7 @@ export default function Home() {
                   Aprenda desde o básico até funcionalidades avançadas.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-500 font-semibold">40+ horas de conteúdo</span>
+                  <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
@@ -168,7 +168,7 @@ export default function Home() {
                   Animações, performance e arquitetura de alto nível.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-500 font-semibold">35+ horas de conteúdo</span>
+                  <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
@@ -196,7 +196,7 @@ export default function Home() {
                   APIs prontas para sua nova experiência.
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-green-500 font-semibold">30+ horas de conteúdo</span>
+                  <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
