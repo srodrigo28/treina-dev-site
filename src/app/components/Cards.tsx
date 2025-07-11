@@ -79,7 +79,7 @@ function Cards() {
         {/* O componente Link do Next.js foi substituído por uma âncora individual por card.
             Cada formação possui seu próprio link. Se a url estiver vazia, o card será redirecionado para '#' */}
         <div className="flex justify-center">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 flex-1 h-72">
             {formations.map((formation) => (
               <FormationCard key={formation.id} {...formation} />
             ))}
@@ -106,7 +106,7 @@ function FormationCard({ title, level, tag, image, urlPromocao }: Formation) {
       )}
 
       {/* Imagem */}
-      <div className="relative h-40 w-full overflow-hidden">
+      <div className="relative h-44 w-full overflow-hidden">
         <img
           src={image}
           alt={`Imagem da formação ${title}`}
