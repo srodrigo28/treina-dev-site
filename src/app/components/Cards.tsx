@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 // Define o tipo Formation
@@ -71,7 +72,7 @@ function FormationCard({ title, level, tag, image, urlPromocao }: Formation) {
 
       {/* Imagem do card */}
       <div className="relative h-52 w-full overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={`Imagem da formação ${title}`}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

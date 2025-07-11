@@ -106,6 +106,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Showcase de Projetos */}
+      {/* <ProjectsShowcase /> */}
+
       {/* Seção de Cards de Cursos (assuming this is the Cards component) */}
       {/* If Cards component needs internal responsiveness, it should be handled there */}
       <Cards />
