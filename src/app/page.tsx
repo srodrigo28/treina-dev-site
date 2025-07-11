@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Users, Smartphone, Code, Instagram, Youtube } from 'lucide-react'
 import { FaWhatsapp } from "react-icons/fa";
+import Cards from './components/Cards';
 
   export default function Home() {
   return (
@@ -38,16 +39,6 @@ import { FaWhatsapp } from "react-icons/fa";
       <section className="relative min-h-screen overflow-hidden">
         {/* Vídeo de Fundo */}
         <div className="absolute inset-0 w-full h-full">
-          {/* <iframe
-            className="w-full h-full object-cover max-w-[1280px] mx-auto"
-            src="https://www.youtube.com/embed/syskoNXbua4?si=5eLjQXf_9mR-R55?autoplay=1
-            &mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding="
-            &mute=1&loop=1&&controls=0&showinfo=0&rel=0&iv_load_policy=3"
-            title="Curso de Desenvolvimento de Apps"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe> */}
           <iframe width="90%" height="80%" className='mx-auto mt-28'
             src="https://www.youtube.com/embed/syskoNXbua4?autoplay=1&mute=1&loop=1&playlist=syskoNXbua4&controls=0&showinfo=0&rel=0&iv_load_policy=3"
             title="YouTube video player"
@@ -105,6 +96,8 @@ import { FaWhatsapp } from "react-icons/fa";
           </div>
         </div>
       </section>
+
+      <Cards />
 
       {/* Cards de Vídeos */}
       <section id="cursos" className="py-20 bg-black/20">
