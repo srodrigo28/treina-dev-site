@@ -144,12 +144,13 @@ export default function Home() {
                   Desenvolva apps nativos para iOS e Android com uma única base de código. 
                   Aprenda desde o básico até funcionalidades avançadas.
                 </p>
+                {/* 
                 <div className="flex items-center justify-between">
                   <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -172,12 +173,12 @@ export default function Home() {
                   Domine o framework do Google para criar apps incríveis. 
                   Animações, performance e arquitetura de alto nível.
                 </p>
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -200,12 +201,13 @@ export default function Home() {
                   Construa backends robustos para seus apps. Java & Node.js, bancos de dados, 
                   APIs prontas para sua nova experiência.
                 </p>
+                {/* 
                 <div className="flex items-center justify-between">
                   <span className="text-green-500 font-semibold">Conteúdo no youtube</span>
                   <Button size="sm" className="bg-green-600 text-white hover:bg-green-700">
                     Ver Mais
                   </Button>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
