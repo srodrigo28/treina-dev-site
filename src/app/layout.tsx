@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Treina-Dev",
     images: [
       {
-        url: "https://www.treinadev.com.br/og-image.jpg", // Substitua pelo URL da sua imagem Open Graph
+        url: "http://treina-dev-site.vercel.app/start.png", // Substitua pelo URL da sua imagem Open Graph
         width: 1200,
         height: 630,
         alt: "Treina-Dev - Transforme sua carreira em programação",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Treina-Dev - Transforme sua carreira em programação",
     description: "Aprenda as tecnologias mais demandadas do mercado com uma metodologia prática e eficiente.",
-    images: ["https://www.treinadev.com.br/twitter-image.jpg"], // Substitua pelo URL da sua imagem para Twitter Card
+    images: ["http://treina-dev-site.vercel.app/start.png"], // Substitua pelo URL da sua imagem para Twitter Card
   },
   // Configuração de ícones (favicon) com cache busting
   icons: {
