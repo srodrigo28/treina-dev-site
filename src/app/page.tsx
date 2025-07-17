@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Users, Code, Instagram, Youtube } from 'lucide-react' // Removed Whatsapp from lucide-react import
 import Cards from './components/Cards'
+import Link from 'next/link'
 // import { FaTiktok, FaWhatsapp } from 'react-icons/fa' // Removed react-icons/fa import
 // import Cards from './components/Cards' // Commented out Cards import as it's not resolvable in this environment
 
@@ -18,21 +19,21 @@ export default function Home() {
             <span className="text-xl font-bold text-white">Treina-dev</span>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#cursos" className="text-blue-400 hover:text-green-500 transition-colors duration-300">Nossos Cursos:</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">FlutterFlow</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">Java</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">ReactJS</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">React Native</a>
-            <a href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">NextJS</a>
+            <Link href="#cursos" className="text-blue-400 hover:text-green-500 transition-colors duration-300">Nossos Cursos:</Link>
+            <Link href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">FlutterFlow</Link>
+            <Link href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">Java</Link>
+            <Link href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">ReactJS</Link>
+            <Link href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">React Native</Link>
+            <Link href="#cursos" className="text-gray-300 hover:text-green-500 transition-colors duration-300">NextJS</Link>
           </nav>
-          <a
+          <Link
             href="https://wa.me/5562998579084"
             target="_blank"
             rel="noopener noreferrer"
             className="animate-pulse"
           >
             <Button className="bg-green-600 hover:bg-green-700 text-white">Começar Agora</Button>
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -75,7 +76,7 @@ export default function Home() {
 
             {/* Botão Principal */}
             <div className="space-y-6">
-              <a
+              <Link
                 href="https://wa.me/5562998579084"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -88,7 +89,7 @@ export default function Home() {
                   <Users className="mr-3 h-8 w-4" />
                   Inscreva-se na comunidade GRÁTIS
                 </Button>
-              </a>
+              </Link>
               <p className="text-gray-300 mt-7 text-lg drop-shadow-md">
                 Mais de 2.000 desenvolvedores só em 2025.
               </p>
@@ -215,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* Botão WhatsApp Flutuante */}
-      <a
+      <Link
         href="https://wa.me/5562998579084"
         target="_blank"
         rel="noopener noreferrer"
@@ -230,7 +231,7 @@ export default function Home() {
         >
           <path d="M380.9 97.1C339.4 55.6 283.8 32 224 32S108.6 55.6 67.1 97.1 32 183.8 32 243.8c0 37.1 12.1 74.2 35.4 106.4L1 480l117.6-30.7c27.4 15.3 58.6 23.9 91.3 23.9 59.8 0 115.4-23.6 156.9-65.1s65.1-97.1 65.1-156.9c0-59.8-23.6-115.4-65.1-156.9zM224 416c-32.4 0-64.3-8.9-92.5-25.7l-6.7-4-69.6 18.2L101.2 340c-18.1-29.8-27.8-64.2-27.8-96.2 0-49.7 20.2-95.7 56.4-131.9 36.2-36.2 82.2-56.4 131.9-56.4 49.7 0 95.7 20.2 131.9 56.4 36.2 36.2 56.4 82.2 56.4 131.9 0 49.7-20.2 95.7-56.4 131.9-36.2 36.2-82.2 56.4-131.9 56.4zM320 288c-4.4-2.2-26.1-12.9-30.1-14.4s-6.9-2.2-9.8 2.2-11.3 14.4-13.9 17.3-5.2 3.3-9.5 1.1c-24.6-13.3-58.4-36.3-82.7-79.6-2.4-4.2-2.4-6.5-.2-8.7s6.5-4.4 9-6.5c2.2-2.2 4.4-5.2 6.5-7.6s2.9-4.2 4.4-6.9c1.5-2.6.7-4.9-.7-6.9s-9.8-23.6-13.4-32.2c-3.6-8.7-7.3-7.6-9.8-7.6s-4.9-.2-7.6-.2c-2.6 0-6.9 1.1-10.5 5.2s-13.4 13.9-13.4 33.9c0 19.9 13.9 39.1 15.8 41.3s27.3 41.3 66.4 58.7c37.6 16.7 45.4 14.4 54 12.9s28.1-11.5 32-21.6c3.9-10.1 3.9-18.8 2.8-20.6s-4.2-2.2-8.4-4.4z" />
         </svg>
-      </a>
+      </Link>
 
       {/* Rodapé */}
       <footer className="bg-black py-12">
@@ -248,27 +249,27 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Links Rápidos</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">Links Manuais</h4>
               <ul className="space-y-2">
-                <li><a href="#cursos" className="text-gray-400 hover:text-green-500 transition-colors">Cursos</a></li>
-                <li><a href="#sobre" className="text-gray-400 hover:text-green-500 transition-colors">Sobre Nós</a></li>
-                <li><a href="#contato" className="text-gray-400 hover:text-green-500 transition-colors">Contato</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-green-500 transition-colors">Política de Privacidade</a></li>
+                <li><Link href="doc/stripe.html"  className="text-gray-400 hover:text-green-500 transition-colors">Stripe</Link></li>
+                <li><Link href="doc/next-v8.html" className="text-gray-400 hover:text-green-500 transition-colors">NextJs</Link></li>
+                <li><Link href="doc/nuxt.html"    className="text-gray-400 hover:text-green-500 transition-colors">NuxtJs</Link></li>
+                <li><Link href="doc/doc.html"     className="text-gray-400 hover:text-green-500 transition-colors">Supabase Doc</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Siga-nos</h4>
               <div className="flex space-x-4">
-                <a
+                <Link
                   href="https://www.instagram.com/aulastreinadev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-pink-500 to-purple-500 p-3 rounded-full hover:scale-110 transition-transform duration-300"
                 >
                   <Instagram className="h-6 w-6 text-white" />
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.tiktok.com/@treinadev?lang=pt_BR"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -282,15 +283,15 @@ export default function Home() {
                   >
                     <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17A122.18,122.18,0,0,0,348.86,64c-23.23,4-45.62,14.16-68.42,33.18V209.91Z" />
                   </svg>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="https://www.youtube.com/@treina-dev/videos"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-red-600 p-3 rounded-full hover:scale-110 transition-transform duration-300"
                 >
                   <Youtube className="h-6 w-6 text-white" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
