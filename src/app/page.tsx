@@ -249,7 +249,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Links Manuais</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">Links Tecnologias</h4>
               <ul className="space-y-2">
                 <li><Link href="doc/next-v8.html" className="text-gray-400 hover:text-green-500 transition-colors">NextJs</Link></li>
                 <li><Link href="doc/nuxt.html"    className="text-gray-400 hover:text-green-500 transition-colors">NuxtJs</Link></li>
@@ -258,7 +258,7 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Links Manuais</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">Links Soluções</h4>
               <ul className="space-y-2">
                 <li><Link href="doc/api.html"  className="text-gray-400 hover:text-green-500 transition-colors">Api Pix</Link></li>
                 <li><Link href="doc/stripe.html"  className="text-gray-400 hover:text-green-500 transition-colors">Stripe</Link></li>
