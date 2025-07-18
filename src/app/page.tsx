@@ -236,7 +236,7 @@ export default function Home() {
       {/* Rodapé */}
       <footer className="bg-black py-12">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Code className="h-8 w-8 text-green-600" />
@@ -251,10 +251,18 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Links Manuais</h4>
               <ul className="space-y-2">
-                <li><Link href="doc/stripe.html"  className="text-gray-400 hover:text-green-500 transition-colors">Stripe</Link></li>
                 <li><Link href="doc/next-v8.html" className="text-gray-400 hover:text-green-500 transition-colors">NextJs</Link></li>
                 <li><Link href="doc/nuxt.html"    className="text-gray-400 hover:text-green-500 transition-colors">NuxtJs</Link></li>
                 <li><Link href="doc/doc.html"     className="text-gray-400 hover:text-green-500 transition-colors">Supabase Doc</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Links Manuais</h4>
+              <ul className="space-y-2">
+                <li><Link href="doc/api.html"  className="text-gray-400 hover:text-green-500 transition-colors">Api Pix</Link></li>
+                <li><Link href="doc/stripe.html"  className="text-gray-400 hover:text-green-500 transition-colors">Stripe</Link></li>
+                <li><Link href="doc/webhook.html"  className="text-gray-400 hover:text-green-500 transition-colors">WebHook</Link></li>
               </ul>
             </div>
 

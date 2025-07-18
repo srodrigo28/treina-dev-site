@@ -1,70 +1,171 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Manual de Integração - Supabase + Stripe</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual: Supabase + Stripe</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    .sidebar-link.active { color: #6366f1; font-weight: 600; border-left-color: #6366f1; }
+    .dark .sidebar-link.active { color: #6366f1; border-left-color: #6366f1; }
+    .mobile-menu-item.active .item-number { background-color: #6366f1; color: white; }
+    .dark .mobile-menu-item.active .item-number { background-color: #6366f1; color: #1e293b; }
+    .mobile-menu-item.expanded { background-color: #eef2ff; }
+    .dark .mobile-menu-item.expanded { background-color: #312e81; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    .dark ::-webkit-scrollbar-track { background: #2d3748; }
+    ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-900 leading-relaxed">
-  <div class="max-w-4xl mx-auto px-6 py-10 bg-white shadow-md rounded-lg mt-10">
-    <h1 class="text-3xl font-bold text-blue-600 mb-6">🎯 Plataforma de Sorteios Diários - Manual de Integração</h1>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+  <button id="theme-toggle" class="fixed bottom-4 right-4 z-50 p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-md">
+    <svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+    <svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+  </button>
 
-    <p class="mb-4">Este guia irá te ajudar a configurar sua plataforma com <strong>Supabase</strong> e <strong>Stripe</strong>, deixando tudo pronto para funcionar em produção ou testes.</p>
+  <div id="mobile-menu" class="lg:hidden fixed top-0 left-0 right-0 p-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-lg z-40"><div id="mobile-menu-items" class="flex items-center space-x-2 overflow-x-auto pb-1"></div></div>
 
-    <hr class="my-6" />
+  <div class="flex">
+    <aside class="fixed top-0 left-0 h-screen w-64 p-4 border-r border-slate-200 dark:border-slate-800 hidden lg:block">
+      <h2 class="text-xl font-bold mb-4">Índice</h2>
+      <nav><ol id="sidebar-nav" class="space-y-2"></ol></nav>
+    </aside>
+    <main class="w-full lg:ml-64 p-4 md:p-8 pt-20 lg:pt-8 pb-24">
+      <div class="max-w-4xl mx-auto">
+        <header class="mb-12">
+          <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">Manual: Supabase + Stripe</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-400 mt-3">Integração para plataforma de sorteios diários</p>
+        </header>
 
-    <h2 class="text-2xl font-semibold text-gray-800 mb-3">✅ PRÉ-REQUISITOS</h2>
-    <ul class="list-disc pl-6 mb-6">
-      <li>Conta no <a href="https://supabase.com/" class="text-blue-500 underline">Supabase</a></li>
-      <li>Conta no <a href="https://stripe.com/" class="text-blue-500 underline">Stripe</a></li>
-      <li>Projeto com Next.js + TailwindCSS + ShadCN UI</li>
-    </ul>
+        <div id="manual-content" class="space-y-16">
 
-    <h2 class="text-2xl font-semibold text-gray-800 mb-3">🔐 1. INTEGRAÇÃO COM SUPABASE</h2>
-    <ol class="list-decimal pl-6 mb-6 space-y-2">
-      <li><strong>Criar projeto</strong> no Supabase e copiar as chaves <code>SUPABASE_URL</code> e <code>SUPABASE_ANON_KEY</code></li>
-      <li>Ir em SQL Editor e colar o conteúdo de <code>sql_plataforma_sorteios_diarios.sql</code></li>
-      <li>Habilitar autenticação por e-mail/senha</li>
-      <li>(Opcional) Criar bucket em <code>Storage</code> chamado <strong>comprovantes</strong></li>
-    </ol>
+          <section id="step-1" class="manual-section">
+            <h2 data-title="Pré-requisitos" class="text-3xl font-bold border-b pb-2 mb-4">Passo 1: Pré-requisitos</h2>
+            <ul class="list-disc pl-6">
+              <li>Conta no <a href="https://supabase.com" class="text-blue-500 underline">Supabase</a></li>
+              <li>Conta no <a href="https://stripe.com" class="text-blue-500 underline">Stripe</a></li>
+              <li>Projeto com Next.js + TailwindCSS + ShadCN UI</li>
+            </ul>
+          </section>
 
-    <h2 class="text-2xl font-semibold text-gray-800 mb-3">💳 2. INTEGRAÇÃO COM STRIPE</h2>
-    <ol class="list-decimal pl-6 mb-6 space-y-2">
-      <li><strong>Criar conta</strong> no Stripe e acessar dashboard</li>
-      <li>Criar produto (ex: Plano PRO) e obter <code>price_id</code></li>
-      <li>Configurar .env.local:
-        <pre class="bg-gray-100 p-2 rounded mt-2"><code>
-NEXT_PUBLIC_SUPABASE_URL=...
+          <section id="step-2" class="manual-section">
+            <h2 data-title="Integração com Supabase" class="text-3xl font-bold border-b pb-2 mb-4">Passo 2: Integração com Supabase</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Criar projeto no Supabase e copiar <code>SUPABASE_URL</code> e <code>SUPABASE_ANON_KEY</code></li>
+              <li>Executar o SQL:
+                <pre><code class="language-sql">-- SQL básico
+CREATE TABLE sorteios (...);
+CREATE TABLE participantes (...);
+                </code></pre>
+              </li>
+              <li>Habilitar login por e-mail/senha</li>
+              <li>Opcional: criar bucket chamado <strong>comprovantes</strong></li>
+            </ol>
+          </section>
+
+          <section id="step-3" class="manual-section">
+            <h2 data-title="Integração com Stripe" class="text-3xl font-bold border-b pb-2 mb-4">Passo 3: Integração com Stripe</h2>
+            <ol class="list-decimal pl-6 space-y-2">
+              <li>Criar produto e obter <code>price_id</code></li>
+              <li>Adicionar ao <code>.env.local</code>:
+                <pre><code class="language-bash">NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 STRIPE_SECRET_KEY=...
 STRIPE_WEBHOOK_SECRET=...
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=...
-        </code></pre>
-      </li>
-      <li>Implementar rota <code>/api/stripe/checkout</code> com redirecionamento</li>
-      <li>Implementar <code>/api/stripe/webhook</code> e capturar evento <code>checkout.session.completed</code></li>
-    </ol>
+                </code></pre>
+              </li>
+              <li>Criar <code>/api/stripe/checkout</code> para redirecionar</li>
+              <li>Criar <code>/api/stripe/webhook</code> e capturar evento <code>checkout.session.completed</code></li>
+            </ol>
+          </section>
 
-    <h2 class="text-2xl font-semibold text-gray-800 mb-3">🧩 3. FUNCIONAMENTO DO SISTEMA</h2>
-    <ul class="list-disc pl-6 mb-6">
-      <li>Sorteio diário é gerado automaticamente</li>
-      <li>Usuários participam com R$5 por número</li>
-      <li>Números são gerados aleatoriamente</li>
-      <li>Ao final do dia, um ganhador é sorteado</li>
-      <li>Ganhadores aparecem na landing page com dados e valor ganho</li>
-    </ul>
+          <section id="step-4" class="manual-section">
+            <h2 data-title="Funcionamento do sistema" class="text-3xl font-bold border-b pb-2 mb-4">Passo 4: Funcionamento do sistema</h2>
+            <ul class="list-disc pl-6">
+              <li>Sorteio diário gerado automaticamente</li>
+              <li>Usuários participam com R$5 por número</li>
+              <li>Ganhador sorteado ao final do dia</li>
+              <li>Ganhadores visíveis na landing page</li>
+            </ul>
+          </section>
 
-    <h2 class="text-xl font-bold text-green-700 mt-10 mb-4">✅ Projeto pronto para produção</h2>
-    <ul class="list-disc pl-6">
-      <li>Supabase conectado</li>
-      <li>Stripe configurado com plano</li>
-      <li>Ambiente com variáveis preenchidas</li>
-      <li>Deploy pronto (ex: Vercel)</li>
-    </ul>
+          <section id="step-5" class="manual-section">
+            <h2 data-title="Pronto para produção" class="text-3xl font-bold border-b pb-2 mb-4">Passo 5: Pronto para produção</h2>
+            <ul class="list-disc pl-6">
+              <li>Supabase configurado</li>
+              <li>Stripe funcionando</li>
+              <li>Ambiente com variáveis</li>
+              <li>Deploy (Vercel, por exemplo)</li>
+            </ul>
+          </section>
 
-    <p class="mt-10 text-center text-gray-500 italic">Desenvolvido com ❤️ para gerar engajamento e oportunidades reais.</p>
+        </div>
+        <p class="text-center text-gray-400 mt-10 italic">Desenvolvido com ❤️ para gerar engajamento e oportunidades reais.</p>
+      </div>
+    </main>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      hljs.highlightAll();
+
+      const themeToggleBtn = document.getElementById('theme-toggle'),
+            darkIcon = document.getElementById('theme-toggle-dark-icon'),
+            lightIcon = document.getElementById('theme-toggle-light-icon');
+
+      const applyTheme = (theme) => {
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        darkIcon.classList.toggle('hidden', theme !== 'dark');
+        lightIcon.classList.toggle('hidden', theme === 'dark');
+      };
+
+      const savedTheme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      applyTheme(savedTheme);
+
+      themeToggleBtn.addEventListener("click", () => {
+        const newTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+        localStorage.setItem("theme", newTheme);
+        applyTheme(newTheme);
+      });
+
+      const sections = document.querySelectorAll(".manual-section"),
+            sidebarNav = document.getElementById("sidebar-nav"),
+            mobileMenu = document.getElementById("mobile-menu-items");
+
+      sections.forEach((section, idx) => {
+        const id = section.id,
+              title = section.querySelector("h2").dataset.title,
+              num = idx + 1;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${id}`;
+        a.textContent = `${num}. ${title}`;
+        a.className = "sidebar-link block border-l-2 border-transparent pl-4 py-1 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+        li.appendChild(a);
+        sidebarNav.appendChild(li);
+
+        const mobileLink = document.createElement("a");
+        mobileLink.href = `#${id}`;
+        mobileLink.className = "mobile-menu-item flex-shrink-0 flex items-center p-1 rounded-full bg-slate-200 dark:bg-slate-700";
+        mobileLink.innerHTML = `<span class="item-number flex items-center justify-center h-8 w-8 rounded-full font-bold">${num}</span><span class="item-title hidden ml-2 mr-2 font-semibold whitespace-nowrap text-sm">${title}</span>`;
+        mobileMenu.appendChild(mobileLink);
+
+        [a, mobileLink].forEach(el => {
+          el.addEventListener("click", e => {
+            e.preventDefault();
+            const top = section.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({ top, behavior: "smooth" });
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
