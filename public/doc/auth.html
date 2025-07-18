@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <title>Autenticação com Supabase - Google e GitHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    .sidebar-link.active { color: #0ea5e9; font-weight: 600; border-left-color: #0ea5e9; }
+    .dark .sidebar-link.active { color: #0ea5e9; border-left-color: #0ea5e9; }
+    .mobile-menu-item.active .item-number { background-color: #0ea5e9; color: white; }
+    .dark .mobile-menu-item.active .item-number { background-color: #0ea5e9; color: #1e293b; }
+    .mobile-menu-item.expanded { background-color: #e0f2fe; }
+    .dark .mobile-menu-item.expanded { background-color: #082f49; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100">
+  <button id="theme-toggle" class="fixed bottom-4 right-4 z-50 p-2 rounded-full bg-slate-700 text-white shadow-md">
+    <span id="theme-toggle-dark-icon" class="hidden">🌙</span>
+    <span id="theme-toggle-light-icon" class="">☀️</span>
+  </button>
+
+  <div id="mobile-menu" class="lg:hidden fixed top-0 left-0 right-0 p-2 bg-slate-800 backdrop-blur-sm shadow-lg z-40">
+    <div id="mobile-menu-items" class="flex items-center space-x-2 overflow-x-auto pb-1"></div>
+  </div>
+
+  <div class="flex">
+    <aside class="fixed top-0 left-0 h-screen w-64 p-4 border-r border-slate-700 hidden lg:block">
+      <h2 class="text-xl font-bold mb-4">Índice</h2>
+      <nav><ol id="sidebar-nav" class="space-y-2"></ol></nav>
+    </aside>
+
+    <main class="w-full lg:ml-64 p-6 pt-20 lg:pt-8 pb-24">
+      <div class="max-w-4xl mx-auto space-y-16">
+        <header>
+          <h1 class="text-4xl font-extrabold text-cyan-400 mb-2">🔐 Autenticação com Supabase</h1>
+          <p class="text-slate-400">Integração com Google e GitHub no Next.js</p>
+        </header>
+
+        <section id="step-1">
+          <h2 data-title="Configuração do Supabase" class="text-2xl font-bold border-b pb-2">1. Configuração no Supabase</h2>
+          <ul class="list-disc pl-6 mt-4 space-y-2">
+            <li>Crie um projeto no <a href="https://supabase.com" class="text-cyan-400 underline">Supabase</a>.</li>
+            <li>No menu lateral, vá em <strong>Authentication → Providers</strong>.</li>
+            <li>Habilite o login com Google e GitHub.</li>
+            <li>Configure as chaves OAuth:
+              <br/><code class="block mt-1 bg-slate-800 p-2 rounded text-sm">GOOGLE_CLIENT_ID / SECRET<br/>GITHUB_CLIENT_ID / SECRET</code>
+            </li>
+          </ul>
+        </section>
+
+        <section id="step-2">
+          <h2 data-title="Instalação no Projeto" class="text-2xl font-bold border-b pb-2">2. Instalação no Projeto</h2>
+          <pre class="bg-slate-800 p-4 rounded text-sm mt-4 overflow-auto"><code class="text-cyan-300">npm install @supabase/supabase-js</code></pre>
+        </section>
+
+        <section id="step-3">
+          <h2 data-title="Configuração do Cliente" class="text-2xl font-bold border-b pb-2">3. Configuração do Supabase Client</h2>
+          <pre class="bg-slate-800 p-4 rounded text-sm mt-4 overflow-auto"><code class="text-cyan-300">// lib/supabase.ts
+import { createClient } from '@supabase/supabase-js';
+
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);</code></pre>
+        </section>
+
+        <section id="step-4">
+          <h2 data-title="Página de Login" class="text-2xl font-bold border-b pb-2">4. Página de Login</h2>
+          <pre class="bg-slate-800 p-4 rounded text-sm mt-4 overflow-auto"><code class="text-cyan-300">// pages/login.tsx
+import { supabase } from '../lib/supabase';
+
+export default function Login() {
+  const loginWithProvider = async (provider: 'google' | 'github') => {
+    await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: 'http://localhost:3000/dashboard' }
+    });
+  };
+
+  return (
+    &lt;div className="flex flex-col items-center justify-center min-h-screen"&gt;
+      &lt;button onClick={() =&gt; loginWithProvider('google')} className="bg-red-500 p-2 m-2 rounded"&gt;
+        Entrar com Google
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; loginWithProvider('github')} className="bg-gray-800 p-2 m-2 rounded"&gt;
+        Entrar com GitHub
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+        </section>
+
+        <section id="step-5">
+          <h2 data-title="Proteção de Rotas" class="text-2xl font-bold border-b pb-2">5. Proteção de Rotas</h2>
+          <pre class="bg-slate-800 p-4 rounded text-sm mt-4 overflow-auto"><code class="text-cyan-300">// middleware/auth.ts
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+
+export async function middleware(req: NextRequest) {
+  const supabase = createMiddlewareClient({ req });
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) return NextResponse.redirect(new URL('/login', req.url));
+}</code></pre>
+        </section>
+
+        <p class="text-center text-slate-500 italic">Pronto! Seu login com OAuth está funcionando 🎉</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const darkIcon = document.getElementById('theme-toggle-dark-icon');
+      const lightIcon = document.getElementById('theme-toggle-light-icon');
+      toggleBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        darkIcon.classList.toggle('hidden', !isDark);
+        lightIcon.classList.toggle('hidden', isDark);
+      });
+
+      const sections = document.querySelectorAll("section[id]");
+      const sidebar = document.getElementById("sidebar-nav");
+      const mobileMenu = document.getElementById("mobile-menu-items");
+
+      sections.forEach((section, i) => {
+        const title = section.querySelector("h2").dataset.title;
+        const id = section.id;
+        const num = i + 1;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `#${id}`;
+        a.textContent = `${num}. ${title}`;
+        a.className = "sidebar-link block border-l-2 border-transparent pl-4 py-1 text-slate-400 hover:text-white";
+        li.appendChild(a);
+        sidebar.appendChild(li);
+
+        const mob = document.createElement("a");
+        mob.href = `#${id}`;
+        mob.className = "mobile-menu-item flex-shrink-0 flex items-center p-1 rounded-full bg-slate-700 transition-all duration-300";
+        mob.innerHTML = `<span class="item-number flex items-center justify-center h-8 w-8 rounded-full font-bold">${num}</span><span class="item-title hidden ml-2 mr-2 text-sm">${title}</span>`;
+        mobileMenu.appendChild(mob);
+
+        [a, mob].forEach(el => {
+          el.addEventListener("click", e => {
+            e.preventDefault();
+            const target = document.getElementById(id);
+            window.scrollTo({ top: target.offsetTop - 80, behavior: "smooth" });
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

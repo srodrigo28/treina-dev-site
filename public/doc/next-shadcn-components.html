@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual - Gráficos ShadCN UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    body.dark { background-color: #0f172a; color: #f1f5f9; }
+    .sidebar-link.active { color: #6366f1; font-weight: bold; border-left: 3px solid #6366f1; }
+    .mobile-menu-item.active .item-number { background: #6366f1; color: #fff; }
+    .manual-section { padding-top: 2rem; }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
+  <!-- Botão tema -->
+  <button id="theme-toggle" class="fixed bottom-4 right-4 p-2 rounded-full bg-slate-300 dark:bg-slate-700 text-black dark:text-white shadow">
+    <span id="theme-label">🌙</span>
+  </button>
+
+  <!-- Menu Mobile -->
+  <div class="lg:hidden fixed top-0 left-0 right-0 p-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow z-40">
+    <div id="mobile-menu-items" class="flex space-x-2 overflow-x-auto pb-1"></div>
+  </div>
+
+  <!-- Estrutura -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="hidden lg:block fixed top-0 left-0 h-screen w-64 p-4 border-r border-slate-200 dark:border-slate-800">
+      <h2 class="text-xl font-bold mb-4">Gráficos ShadCN</h2>
+      <nav>
+        <ol id="sidebar-nav" class="space-y-2"></ol>
+      </nav>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="w-full lg:ml-64 p-4 md:p-8 pt-20 lg:pt-8 pb-24">
+      <div class="max-w-5xl mx-auto">
+        <header class="mb-12">
+          <h1 class="text-4xl font-bold text-indigo-600 dark:text-indigo-400">Manual: Componentes Gráficos com ShadCN UI</h1>
+          <p class="text-lg text-slate-600 dark:text-slate-400 mt-2">Explore modelos de gráficos prontos em uma aplicação Next.js + Tailwind + ShadCN.</p>
+        </header>
+
+        <section id="intro" class="manual-section">
+          <h2 data-title="Introdução" class="text-3xl font-bold border-b border-slate-300 pb-2 mb-6">📌 Introdução</h2>
+          <p>Este manual mostra como usar diferentes gráficos do ShadCN UI com Next.js. Cada gráfico é um componente separado e reutilizável.</p>
+        </section>
+
+        <section id="piechart" class="manual-section">
+          <h2 data-title="Gráfico de Pizza" class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">🥧 PieChartComponent</h2>
+          <pre class="bg-gray-100 dark:bg-gray-800 text-sm p-4 rounded overflow-auto"><code>// components/PieChartComponent.tsx
+'use client'
+import { PieChart, Pie, Cell, Tooltip } from 'recharts'
+
+const data = [
+  { name: 'A', value: 400 },
+  { name: 'B', value: 300 },
+  { name: 'C', value: 300 },
+]
+const COLORS = ['#6366f1', '#60a5fa', '#34d399']
+
+export function PieChartComponent() {
+  return (
+    &lt;PieChart width={400} height={300}&gt;
+      &lt;Pie data={data} dataKey="value" outerRadius={100} label&gt;
+        {data.map((entry, index) =&gt; (
+          &lt;Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} /&gt;
+        ))}
+      &lt;/Pie&gt;
+      &lt;Tooltip /&gt;
+    &lt;/PieChart&gt;
+  )
+}
+</code></pre>
+        </section>
+
+        <section id="areachart" class="manual-section">
+          <h2 data-title="Gráfico de Área" class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">📈 AreaChartComponent</h2>
+          <pre class="bg-gray-100 dark:bg-gray-800 text-sm p-4 rounded overflow-auto"><code>// components/AreaChartComponent.tsx
+'use client'
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+
+const data = [
+  { name: 'Jan', uv: 400 },
+  { name: 'Fev', uv: 300 },
+  { name: 'Mar', uv: 500 },
+]
+
+export function AreaChartComponent() {
+  return (
+    &lt;AreaChart width={500} height={300} data={data}&gt;
+      &lt;defs&gt;
+        &lt;linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1"&gt;
+          &lt;stop offset="5%" stopColor="#6366f1" stopOpacity={0.8}/&gt;
+          &lt;stop offset="95%" stopColor="#6366f1" stopOpacity={0}/&gt;
+        &lt;/linearGradient&gt;
+      &lt;/defs&gt;
+      &lt;XAxis dataKey="name" /&gt;
+      &lt;YAxis /&gt;
+      &lt;CartesianGrid strokeDasharray="3 3" /&gt;
+      &lt;Tooltip /&gt;
+      &lt;Area type="monotone" dataKey="uv" stroke="#6366f1" fillOpacity={1} fill="url(#colorUv)" /&gt;
+    &lt;/AreaChart&gt;
+  )
+}
+</code></pre>
+        </section>
+
+        <section id="radarchart" class="manual-section">
+          <h2 data-title="Gráfico de Radar" class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">🕸️ RadarChartComponent</h2>
+          <pre class="bg-gray-100 dark:bg-gray-800 text-sm p-4 rounded overflow-auto"><code>// components/RadarChartComponent.tsx
+'use client'
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts'
+
+const data = [
+  { subject: 'Marketing', A: 120 },
+  { subject: 'Design', A: 98 },
+  { subject: 'Dev', A: 86 },
+  { subject: 'SEO', A: 99 },
+]
+
+export function RadarChartComponent() {
+  return (
+    &lt;RadarChart outerRadius={90} width={500} height={300} data={data}&gt;
+      &lt;PolarGrid /&gt;
+      &lt;PolarAngleAxis dataKey="subject" /&gt;
+      &lt;PolarRadiusAxis /&gt;
+      &lt;Radar name="User" dataKey="A" stroke="#6366f1" fill="#6366f1" fillOpacity={0.6} /&gt;
+    &lt;/RadarChart&gt;
+  )
+}
+</code></pre>
+        </section>
+
+        <section id="usando-na-page" class="manual-section">
+          <h2 data-title="Página Principal" class="text-2xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">📄 page.tsx</h2>
+          <pre class="bg-gray-100 dark:bg-gray-800 text-sm p-4 rounded overflow-auto"><code>// app/page.tsx
+import { PieChartComponent } from '@/components/PieChartComponent'
+import { AreaChartComponent } from '@/components/AreaChartComponent'
+import { RadarChartComponent } from '@/components/RadarChartComponent'
+
+export default function Page() {
+  return (
+    &lt;main className="p-6 space-y-10"&gt;
+      &lt;h1 className="text-3xl font-bold"&gt;Dashboard de Gráficos&lt;/h1&gt;
+      &lt;PieChartComponent /&gt;
+      &lt;AreaChartComponent /&gt;
+      &lt;RadarChartComponent /&gt;
+    &lt;/main&gt;
+  )
+}
+</code></pre>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const themeLabel = document.getElementById('theme-label');
+      const sections = document.querySelectorAll('.manual-section');
+      const sidebarNav = document.getElementById('sidebar-nav');
+      const mobileMenu = document.getElementById('mobile-menu-items');
+
+      // Tema inicial
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      themeLabel.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+      themeToggleBtn.onclick = () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        themeLabel.textContent = isDark ? '☀️' : '🌙';
+      }
+
+      sections.forEach((section, i) => {
+        const id = section.id;
+        const title = section.querySelector('h2').dataset.title;
+        const number = i + 1;
+
+        const desktopLink = document.createElement('li');
+        desktopLink.innerHTML = `<a href="#${id}" class="sidebar-link block pl-4 py-1 text-slate-600 dark:text-slate-300 hover:text-indigo-500">${number}. ${title}</a>`;
+        sidebarNav.appendChild(desktopLink);
+
+        const mobileItem = document.createElement('a');
+        mobileItem.href = `#${id}`;
+        mobileItem.className = "mobile-menu-item flex-shrink-0 flex items-center p-1 rounded-full bg-slate-200 dark:bg-slate-800";
+        mobileItem.innerHTML = `<span class="item-number flex items-center justify-center h-8 w-8 rounded-full font-bold">${number}</span><span class="item-title hidden ml-2 font-semibold text-sm">${title}</span>`;
+        mobileMenu.appendChild(mobileItem);
+      });
+    });
+  </script>
+</body>
+</html>
